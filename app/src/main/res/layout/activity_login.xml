@@ -51,4 +51,15 @@
         android:backgroundTint="#2196F3"
         android:padding="12dp" />
 
+<!--    <Button-->
+<!--        android:id="@+id/btnDeleteAll"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Delete All"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:backgroundTint="#2196F3"-->
+<!--        android:padding="12dp" />-->
+
 </LinearLayout>

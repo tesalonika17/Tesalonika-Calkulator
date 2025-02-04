@@ -1,10 +1,12 @@
 package com.example.calculator;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Laman_Utama extends AppCompatActivity {
@@ -12,20 +14,38 @@ public class Laman_Utama extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.laman_utama);  // Pastikan layout kamu adalah laman_utama
+        setContentView(R.layout.laman_utama);
 
-        // Menemukan tombol berdasarkan ID
+        // Menemukan tombol keluar berdasarkan ID
         Button btnClose = findViewById(R.id.btn_keluar);
 
-        // Mengatur OnClickListener untuk tombol
+        // Mengatur OnClickListener untuk tombol keluar
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Membuat Intent untuk berpindah ke MainActivity (yang berisi kalkulator)
-                Intent intent = new Intent(Laman_Utama.this, MainActivity.class);
-                startActivity(intent);  // Menjalankan intent untuk pindah ke MainActivity
-                finish();  // Menutup aktivitas saat ini (Laman_Utama)
+                showLogoutConfirmationDialog();
             }
         });
+    }
+
+    private void showLogoutConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Konfirmasi Keluar");
+        builder.setMessage("Apakah Anda yakin ingin keluar?");
+        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity(); // Menutup semua aktivitas yang berjalan
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
